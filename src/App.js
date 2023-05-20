@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { createContext, useState } from "react";
+import Childa from "./Childa";
+const data = createContext("");
+const color = createContext("");
 function App() {
+  const name = "kapil";
+  const getDay = (item) => {
+    setDay(item);
+  };
+  const [day, setDay] = useState("Monday");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <data.Provider value={{ name, getDay: getDay }}>
+        <color.Provider value="green">
+          <h1>app components {day}</h1>
+          <Childa />
+        </color.Provider>
+      </data.Provider>
     </div>
   );
 }
 
 export default App;
+export { data, color };
